@@ -55,6 +55,7 @@ export class AppService {
       if (findPalabra) {
         return findPalabra;
       }
+      await this.connectionPool.end();
       return respuesta;
     } catch (error) {
       console.error(error);
@@ -89,6 +90,7 @@ export class AppService {
       ];
 
       const result = await connection.query(query, params);
+      await this.connectionPool.end();
       return result;
     } catch (error) {
       console.error('Error al insertar en la base de datos', error);
@@ -113,10 +115,13 @@ export class AppService {
           Ejemplo: palabra[0][0].Ejemplo,
         };
         console.log('Palabra: ', palabra[0][0].PalabraUsuario);
+        await this.connectionPool.end();
         return result;
       }
+      await this.connectionPool.end();
       return null;
     } catch (error) {
+      await this.connectionPool.end();
       console.error('Error al mostrar en la base de datos', error);
       throw error;
     }
@@ -129,6 +134,7 @@ export class AppService {
         return findPalabra;
       }
       await this.executeQuery(translatedWord);
+      await this.connectionPool.end();
       return translatedWord;
     } catch (error) {
       console.error(error);
@@ -152,7 +158,7 @@ export class AppService {
           new Date(a.FechaTraduccion).getTime()
         );
       });
-
+      await this.connectionPool.end();
       return sorted;
     } catch (error) {
       console.error(error);
