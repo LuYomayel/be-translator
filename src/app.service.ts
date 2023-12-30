@@ -20,9 +20,9 @@ export class AppService {
       apiKey: this.apiKey,
     });
     this.connectionPool = mysql.createPool({
-      host: '127.0.0.1',
-      user: 'root',
-      password: '',
+      host: 'localhost',
+      user: 'trainease',
+      password: 'Pipi2612',
       database: 'translator',
       waitForConnections: true,
       queueLimit: 0,
