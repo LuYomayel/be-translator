@@ -20,7 +20,7 @@ export class AppService {
       apiKey: this.apiKey,
     });
     this.connectionPool = mysql.createPool({
-      host: 'localhost',
+      host: '127.0.0.1',
       user: 'trainease',
       password: 'Pipi2612',
       database: 'translator',
